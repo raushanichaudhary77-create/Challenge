@@ -1,0 +1,14 @@
+{
+  "name": "touch-grass-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A private, local-first outdoor activity planner",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test",
+    "check": "node --check server.js && node --check public\\app.js && node --check public\\planner.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

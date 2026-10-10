@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#174b38">
+    <meta name="description" content="A gentle, private AI-powered planner for getting outside and finding a little room to breathe.">
+    <title>Touch Grass — a little outside goes a long way</title>
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%23174b38'/%3E%3Cpath d='M20 32V18m0 7c-8 0-11-5-11-12 7 0 11 3 11 10m0-1c0-8 4-12 11-12 0 7-3 12-11 14' fill='none' stroke='%23d8edb3' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/planner.js" defer></script>
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to planner</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Touch Grass home">
+        <span class="brand-mark" aria-hidden="true">✳</span>
+        <span>touch grass<span class="brand-period">.</span></span>
+      </a>
+      <div class="header-note"><span class="pulse-dot" aria-hidden="true"></span> A little outside goes a long way</div>
+      <a class="header-link" href="#why-outside">Why outside?</a>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="sun-icon" aria-hidden="true">✳</span> Your small nudge toward the outdoors</p>
+          <h1>Not a grand adventure.<br><span>Just a little outside.</span></h1>
+          <p class="hero-lede">Tell us what today looks like. We’ll find a gentle, doable way to spend a little time in the fresh air.</p>
+          <div class="hero-promise"><span aria-hidden="true">↳</span> No streaks. No pressure. Your pace is the right pace.</div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="sun-disc"></div>
+          <div class="hill hill-back"></div>
+          <div class="hill hill-front"></div>
+          <div class="art-path"></div>
+          <div class="art-stem stem-one"></div>
+          <div class="art-stem stem-two"></div>
+          <div class="art-label">take the<br>long way home</div>
+        </div>
+      </section>
+
+      <div class="content-grid">
+        <section class="planner-panel panel" aria-labelledby="planner-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow eyebrow-muted">Made for your kind of day</p>
+              <h2 id="planner-title">What sounds good?</h2>
+            </div>
+            <span class="step-count">01 <span aria-hidden="true">/</span> 02</span>
+          </div>
+          <form id="preferences-form">
+            <fieldset class="field-group">
+              <legend>How much time do you have?</legend>
+              <div class="choice-row time-choices">
+                <label class="choice-pill"><input type="radio" name="duration" value="15"><span>15 min</span></label>
+                <label class="choice-pill"><input type="radio" name="duration" value="30" checked><span>30 min</span></label>
+                <label class="choice-pill"><input type="radio" name="duration" value="45"><span>45 min</span></label>
+                <label class="choice-pill"><input type="radio" name="duration" value="60"><span>An hour</span></label>
+              </div>
+            </fieldset>
+
+            <div class="field-pair">
+              <div class="field-group">
+                <label for="energy">Your energy today</label>
+                <select id="energy" name="energy">
+                  <option value="low">Low-key, please</option>
+                  <option value="medium" selected>A little movement</option>
+                  <option value="high">Ready to roam</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label for="setting">Where are you headed?</label>
+                <select id="setting" name="setting">
+                  <option value="park" selected>A park or green space</option>
+                  <option value="neighborhood">Around my neighborhood</option>
+                  <option value="yard">My yard, patio, or balcony</option>
+                  <option value="indoors">Near home / indoors today</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-pair">
+              <div class="field-group">
+                <label for="style">What are you in the mood for?</label>
+                <select id="style" name="style">
+                  <option value="any" selected>Surprise me</option>
+                  <option value="mindful">A mindful reset</option>
+                  <option value="movement">Gentle movement</option>
+                  <option value="playful">Something playful</option>
+                  <option value="nature">Caring for nature</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label for="weather">What’s the weather like?</label>
+                <select id="weather" name="weather">
+                  <option value="mild" selected>Comfortable</option>
+                  <option value="hot">Warm or sunny</option>
+                  <option value="wet">Rainy or slippery</option>
+                  <option value="cold">Chilly</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label for="company">Who’s coming along?</label>
+              <select id="company" name="company">
+                <option value="either" selected>Either works</option>
+                <option value="solo">Just me</option>
+                <option value="company">A friend or family</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="access-notes">Anything to make this easier? <span class="optional">(optional)</span></label>
+              <textarea id="access-notes" name="accessNotes" rows="2" maxlength="250" placeholder="For example: flat paths, a place to sit, or keeping close to home"></textarea>
+              <span class="field-hint">Keep personal details out. This note stays in your browser and is sent only to the configured Ollama endpoint (local by default).</span>
+            </div>
+            <button class="button button-primary generate-button" type="submit">
+              <span class="button-spark" aria-hidden="true">✳</span>
+              <span id="generate-label">Find my little adventure</span>
+              <span class="button-arrow" aria-hidden="true">↗</span>
+            </button>
+          </form>
+          <p class="local-note"><span class="lock-icon" aria-hidden="true">⌑</span> No account, tracking, or API key. The default Ollama setup stays on-device.</p>
+        </section>
+
+        <aside class="side-rail">
+          <section class="daily-card" aria-labelledby="daily-title">
+            <div class="daily-topline"><span class="daily-icon" aria-hidden="true">✦</span> A tiny challenge for today</div>
+            <h2 id="daily-title">Find a new shade of green.</h2>
+            <p id="daily-description">Notice it, name it, and let the rest of the day carry on.</p>
+            <button class="daily-done" id="daily-done" type="button" aria-pressed="false">
+              <span class="checkbox-mark" aria-hidden="true"></span><span id="daily-done-label">I found one</span>
+            </button>
+            <div class="daily-date" id="daily-date"></div>
+          </section>
+          <section class="history-card panel" aria-labelledby="history-title">
+            <div class="history-heading">
+              <div><p class="eyebrow eyebrow-muted">Little moments count</p><h2 id="history-title">Your trail</h2></div>
+              <span class="trail-count" id="trail-count">0</span>
+            </div>
+            <div id="history-list" class="history-list">
+              <p class="empty-history">Your finished moments will find a home here.</p>
+            </div>
+            <button class="text-button" id="clear-history" type="button" hidden>Clear history</button>
+          </section>
+          <div class="privacy-card">
+            <span class="privacy-icon" aria-hidden="true">⌂</span>
+            <p><strong>Made to stay local.</strong><br>Your preferences and finished missions live in this browser. We don’t track you.</p>
+          </div>
+        </aside>
+      </div>
+
+      <section class="missions-section" id="missions" aria-labelledby="missions-title">
+        <div class="missions-heading">
+          <div>
+            <p class="eyebrow eyebrow-muted">Your outside, your way</p>
+            <h2 id="missions-title">A few ideas to get you going<span class="title-period">.</span></h2>
+          </div>
+          <button id="alternate-button" class="button button-quiet" type="button" hidden><span aria-hidden="true">↻</span> Give me different ideas</button>
+        </div>
+        <div id="plan-status" class="plan-status" role="status" aria-live="polite">Your ideas will show up here when you’re ready.</div>
+        <div id="mission-list" class="mission-grid"></div>
+      </section>
+
+      <section class="why-section" id="why-outside">
+        <div class="why-leaf" aria-hidden="true">✳</div>
+        <div>
+          <p class="eyebrow eyebrow-muted">A gentle reminder</p>
+          <h2>Small is still outside.</h2>
+          <p>A few minutes count. Resting in the shade counts. Turning back early counts. There’s no ideal way to do this—just what feels okay for you, today.</p>
+        </div>
+      </section>
+
+      <section class="safety-note" aria-labelledby="safety-title">
+        <div class="safety-icon" aria-hidden="true">♡</div>
+        <div><h2 id="safety-title">Take good care out there</h2>
+          <p>Choose familiar, permitted places; check local weather and access guidance; and bring water or layers when useful. Skip anything that feels unsafe or uncomfortable. Give wildlife space—don’t feed, touch, or approach animals, nests, or plants. In an emergency, contact local services.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand brand-footer" href="/"><span class="brand-mark" aria-hidden="true">✳</span><span>touch grass<span class="brand-period">.</span></span></a>
+      <span>A softer way to make room for outside.</span>
+      <span id="mode-indicator" class="mode-indicator"><span class="mode-dot"></span> Offline Mode</span>
+    </footer>
+
+    <div class="timer-toast" id="timer-toast" hidden>
+      <div class="timer-info"><span class="timer-leaf" aria-hidden="true">✳</span><div><span class="timer-caption">A little time for you</span><strong id="timer-display">15:00</strong></div></div>
+      <div class="timer-actions"><button id="timer-toggle" type="button">Pause</button><button id="timer-stop" type="button" aria-label="Stop timer">×</button></div>
+    </div>
+  </body>
+</html>
